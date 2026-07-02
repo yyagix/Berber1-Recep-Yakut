@@ -51,7 +51,7 @@ export default async function BarberAdminPage({ params }: { params: Promise<{ id
         
         <div className="flex items-center gap-3">
           {role === "SUPERADMIN" && (
-            <DeleteBarberButton barberId={barber.id} barberName={barber.name} />
+            <DeleteBarberButton id={barber.id} name={barber.name} />
           )}
           
           <Link 
