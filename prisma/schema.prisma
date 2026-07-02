@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  password      String?
+  role          Role      @default(BARBER)
+  barberId      String?   @unique
+  barber        Barber?   @relation(fields: [barberId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+enum Role {
+  SUPERADMIN
+  BARBER
+}
+
+model Barber {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  name        String
+  description String?
+  image       String?
+  gallery     String[]  @default([])
+  workingHours Json?    @default("{\"0\": {\"isWorking\": false, \"start\": \"09:00\", \"end\": \"21:00\"}, \"1\": {\"isWorking\": true, \"start\": \"09:00\", \"end\": \"21:00\"}, \"2\": {\"isWorking\": true, \"start\": \"09:00\", \"end\": \"21:00\"}, \"3\": {\"isWorking\": true, \"start\": \"09:00\", \"end\": \"21:00\"}, \"4\": {\"isWorking\": true, \"start\": \"09:00\", \"end\": \"21:00\"}, \"5\": {\"isWorking\": true, \"start\": \"09:00\", \"end\": \"21:00\"}, \"6\": {\"isWorking\": true, \"start\": \"09:00\", \"end\": \"21:00\"}}")
+  dateOverrides Json?   @default("[]")
+  slotInterval Int      @default(30)
+  services    Service[]
+  appointments Appointment[]
+  user        User?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Service {
+  id          String    @id @default(cuid())
+  name        String
+  price       Float
+  duration    Int       @default(30) // in minutes
+  barberId    String
+  barber      Barber    @relation(fields: [barberId], references: [id], onDelete: Cascade)
+  appointments Appointment[]
+}
+
+model Appointment {
+  id            String    @id @default(cuid())
+  customerName  String
+  customerPhone String
+  dateTime      DateTime
+  status        String    @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  barberId      String
+  barber        Barber    @relation(fields: [barberId], references: [id], onDelete: Cascade)
+  serviceId     String
+  service       Service   @relation(fields: [serviceId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
