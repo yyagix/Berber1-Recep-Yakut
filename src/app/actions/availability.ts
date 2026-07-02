@@ -70,7 +70,8 @@ export async function getAvailableSlotsAction(barberId: string, dateStr: string)
 
     const bookedIntervals = appointments.map((appt: any) => {
       const apptTime = new Date(appt.dateTime);
-      const mStart = apptTime.getHours() * 60 + apptTime.getMinutes();
+      // Vercel server works in UTC (UTC+0). We need to calculate availability in Turkey time (UTC+3)
+      const mStart = ((apptTime.getUTCHours() + 3) % 24) * 60 + apptTime.getUTCMinutes();
       const mEnd = mStart + (appt.service?.duration || 30);
       return { start: mStart, end: mEnd };
     });

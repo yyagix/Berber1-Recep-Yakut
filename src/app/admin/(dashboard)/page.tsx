@@ -58,12 +58,18 @@ export default async function AdminDashboard() {
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-xl font-bold text-white">Hızlı İşlemler</h3>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className={`grid gap-4 ${role === "SUPERADMIN" ? "grid-cols-2 sm:grid-cols-3" : "grid-cols-2"}`}>
             {role === "SUPERADMIN" && (
-              <Link href="/admin/barbers/new" className="flex flex-col items-center justify-center p-6 bg-[#1a1a1a] hover:bg-[#d4af37]/10 border border-white/5 hover:border-[#d4af37]/30 rounded-xl transition-all group">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#888888] group-hover:text-[#d4af37] mb-3 transition-colors"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
-                <span className="text-sm font-medium text-white text-center">Yeni Berber Ekle</span>
-              </Link>
+              <>
+                <Link href="/admin/barbers" className="flex flex-col items-center justify-center p-6 bg-[#1a1a1a] hover:bg-[#d4af37]/10 border border-white/5 hover:border-[#d4af37]/30 rounded-xl transition-all group">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#888888] group-hover:text-[#d4af37] mb-3 transition-colors"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span className="text-sm font-medium text-white text-center">Tüm Berberler</span>
+                </Link>
+                <Link href="/admin/barbers/new" className="flex flex-col items-center justify-center p-6 bg-[#1a1a1a] hover:bg-[#d4af37]/10 border border-white/5 hover:border-[#d4af37]/30 rounded-xl transition-all group">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#888888] group-hover:text-[#d4af37] mb-3 transition-colors"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                  <span className="text-sm font-medium text-white text-center">Yeni Berber Ekle</span>
+                </Link>
+              </>
             )}
             {role === "BARBER" && sessionBarberId && (
               <Link href={`/admin/barbers/${sessionBarberId}`} className="flex flex-col items-center justify-center p-6 bg-[#1a1a1a] hover:bg-[#d4af37]/10 border border-white/5 hover:border-[#d4af37]/30 rounded-xl transition-all group">
