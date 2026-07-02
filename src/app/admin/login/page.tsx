@@ -10,10 +10,12 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  async function handleSubmit(formData: FormData) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setIsLoading(true);
     setError("");
     
+    const formData = new FormData(e.currentTarget);
     const result = await loginAction(formData);
     
     if (result.error) {
@@ -45,7 +47,7 @@ export default function LoginPage() {
             </div>
           )}
 
-          <form action={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-[#aaaaaa] mb-2">E-posta Adresi</label>
               <input 
