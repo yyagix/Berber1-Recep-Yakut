@@ -19,9 +19,7 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '50mb',
     },
   },
-  serverActions: {
-    bodySizeLimit: '50mb',
-  },
+
   allowedDevOrigins: ['192.168.1.152'],
 };
 
