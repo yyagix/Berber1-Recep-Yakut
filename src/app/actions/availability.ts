@@ -31,7 +31,7 @@ export async function getAvailableSlotsAction(barberId: string, dateStr: string)
     const yyyyMmDd = targetDate.toISOString().split("T")[0]; // local time handling might vary, but ISO is stable if parsed at midnight
     let overrideConfig = null;
     if (barber.dateOverrides && Array.isArray(barber.dateOverrides)) {
-      overrideConfig = barber.dateOverrides.find(o => o.date === yyyyMmDd);
+      overrideConfig = (barber.dateOverrides as any[]).find(o => o && typeof o === 'object' && o.date === yyyyMmDd);
     }
 
     let hoursSetting = null;
