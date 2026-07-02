@@ -49,4 +49,8 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-playfair), serif;
   }
+
+  button {
+    @apply active:scale-95 transition-transform duration-150;
+  }
 }

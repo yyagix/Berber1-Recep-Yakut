@@ -55,10 +55,10 @@ export default async function Home() {
             Sanatın ve ustalığın buluştuğu nokta. Kendi tarzını keşfetmek için doğru yerdesin.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <a href="#kadromuz" className="px-10 py-5 bg-[#d4af37] text-black font-bold text-lg rounded-sm hover:bg-white hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+            <a href="#kadromuz" className="px-10 py-5 bg-[#d4af37] text-black font-bold text-lg rounded-sm hover:bg-white active:scale-95 transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.3)]">
               Uzmanını Seç & Randevu Al
             </a>
-            <Link href="/randevularim" className="px-10 py-5 bg-transparent border border-white/20 text-white font-bold text-lg rounded-sm hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm">
+            <Link href="/randevularim" className="px-10 py-5 bg-transparent border border-white/20 text-white font-bold text-lg rounded-sm hover:bg-white/10 active:scale-95 hover:border-white transition-all duration-300 backdrop-blur-sm">
               Randevularımı Yönet
             </Link>
           </div>
@@ -252,7 +252,7 @@ export default async function Home() {
               </div>
               
               <div className="text-center">
-                <Link href="/galeri" className="inline-block px-8 py-4 border border-[#d4af37] text-[#d4af37] font-bold rounded-lg hover:bg-[#d4af37] hover:text-black transition-colors duration-300">
+                <Link href="/galeri" className="inline-block px-8 py-4 border border-[#d4af37] text-[#d4af37] font-bold rounded-lg hover:bg-[#d4af37] hover:text-black active:scale-95 transition-all duration-300">
                   Tüm Galeriyi Gör
                 </Link>
               </div>
