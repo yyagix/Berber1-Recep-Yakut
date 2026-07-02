@@ -68,7 +68,7 @@ export async function getAvailableSlotsAction(barberId: string, dateStr: string)
       include: { service: true }
     });
 
-    const bookedIntervals = appointments.map(appt => {
+    const bookedIntervals = appointments.map((appt: any) => {
       const apptTime = new Date(appt.dateTime);
       const mStart = apptTime.getHours() * 60 + apptTime.getMinutes();
       const mEnd = mStart + (appt.service?.duration || 30);
